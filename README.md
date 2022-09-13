@@ -1,2 +1,2 @@
 # tierList
-Site wich a tier list buuilder
+Site wich a tier list builder
