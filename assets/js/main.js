@@ -1,3 +1,5 @@
+//Edit names zone
+
 const divName = document.querySelector('.tier-name');
 const nameH2 = document.querySelector('.tier-name-h2');
 const btnChName = document.querySelector('.edit-name');
@@ -193,7 +195,15 @@ dimg.addEventListener('click', () => {
     }
 });
 
+//Drag and drop zone
+
 const dropFileZone = document.querySelector('.imgs-box');
+
+function imgRemove(event) {
+    const element = event.srcElement;
+    const father = element.parentNode;
+    father.removeChild(element);
+}
 
 function dropHandler(event) {
     // Impedir o comportamento padrão (impedir que o arquivo seja aberto)
@@ -213,6 +223,7 @@ function dropHandler(event) {
                     imgA.draggable = true;
                     imgA.src = imgEvent.target.result;
                     dropFileZone.appendChild(imgA);
+                    imgA.addEventListener('dragend', imgRemove);
                 };
             }
         }
@@ -227,6 +238,7 @@ function dropHandler(event) {
                 imgA.draggable = true;
                 imgA.src = imgEvent.target.result;
                 dropFileZone.appendChild(imgA);
+                imgA.addEventListener('dragend', imgRemove);
             };
             
         }
@@ -240,3 +252,78 @@ function dragOverHandler(event) {
 
 dropFileZone.addEventListener('drop', dropHandler);
 dropFileZone.addEventListener('dragover', dragOverHandler);
+
+const [sDrop, aDrop, bDrop, cDrop, dDrop] = [
+    document.querySelector('#sdrop'),
+    document.querySelector('#adrop'),
+    document.querySelector('#bdrop'),
+    document.querySelector('#cdrop'),
+    document.querySelector('#ddrop'),
+];
+
+function manipulateImg(event, track) {
+    if (event.dataTransfer.items) {
+        // Use a interface DataTransferItemList para acessar o (s) arquivo (s)
+        for (var i = 0; i < event.dataTransfer.items.length; i++) {
+            // Se os itens soltos não forem arquivos, rejeite-os
+            if (event.dataTransfer.items[i].kind === 'file') {
+                let file = event.dataTransfer.items[i].getAsFile();
+                let freader = new FileReader();
+                freader.readAsDataURL(file);
+                freader.onloadend = (imgEvent) => {
+                    const imgA = document.createElement('img');
+                    imgA.style.height = '7.5rem';
+                    imgA.draggable = true;
+                    imgA.src = imgEvent.target.result;
+                    track.appendChild(imgA);
+                    imgA.addEventListener('dragend', imgRemove);
+                };
+            }
+        }
+    } else {
+        // Use a interface DataTransfer para acessar o (s) arquivo (s)
+        for (var i = 0; i < event.dataTransfer.files.length; i++) {
+            let freader = new FileReader();
+            freader.readAsDataURL(event.dataTransfer.files[i]);
+            freader.onloadend = (imgEvent) => {
+                const imgA = document.createElement('img');
+                imgA.style.height = '7.5rem';
+                imgA.draggable = true;
+                imgA.src = imgEvent.target.result;
+                track.appendChild(imgA);
+                imgA.addEventListener('dragend', imgRemove);
+            };
+            
+        }
+    }
+}
+
+sDrop.addEventListener('dragover', dragOverHandler);
+sDrop.addEventListener('drop', (event) => {
+    event.preventDefault();
+    manipulateImg(event, sDrop);
+});
+
+aDrop.addEventListener('dragover', dragOverHandler);
+aDrop.addEventListener('drop', (event) => {
+    event.preventDefault();
+    manipulateImg(event, aDrop);
+});
+
+bDrop.addEventListener('dragover', dragOverHandler);
+bDrop.addEventListener('drop', (event) => {
+    event.preventDefault();
+    manipulateImg(event, bDrop);
+});
+
+cDrop.addEventListener('dragover', dragOverHandler);
+cDrop.addEventListener('drop', (event) => {
+    event.preventDefault();
+    manipulateImg(event, cDrop);
+});
+
+dDrop.addEventListener('dragover', dragOverHandler);
+dDrop.addEventListener('drop', (event) => {
+    event.preventDefault();
+    manipulateImg(event, dDrop);
+});

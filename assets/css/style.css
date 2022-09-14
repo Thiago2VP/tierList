@@ -52,6 +52,7 @@ body {
     position: relative;
     min-height: 8rem;
     border: 1px solid black;
+    overflow: hidden;
 }
 
 .rank-name {
@@ -81,6 +82,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: left;
+    overflow: auto;
 }
 
 .imgs-box {
