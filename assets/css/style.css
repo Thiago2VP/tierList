@@ -1,0 +1,108 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 62.5%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title {
+    text-align: center;
+    margin: 1rem 1rem 3rem 1rem;
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+.tier-name {
+    text-align: center;
+    font-size: 1.5rem;
+    margin: auto;
+    max-width: 24rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tier-name:hover > .edit-name {
+    display: initial;
+}
+
+.tier-name img {
+    cursor: pointer;
+    padding: 0.7rem;
+    width: 2.7rem;
+    display: none;
+}
+
+.tier-grid {
+    width: 90%;
+    margin: 3rem auto 3rem auto;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    overflow: auto;
+}
+
+.classe {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    min-height: 8rem;
+    border: 1px solid black;
+}
+
+.rank-name {
+    font-size: 1.7rem;
+}
+
+.edit-rank-name {
+    position: absolute;
+    right: 0.2rem;
+    bottom: 0.2rem;
+}
+
+.edit-rank-name {
+    width: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.classe:hover > .edit-rank-name {
+    display: initial;
+}
+
+.items {
+    background-color: #1a1a18;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+
+.imgs-box {
+    margin: 3rem auto;
+    padding: 1rem;
+    width: 90%;
+    min-height: 20rem;
+    border: 2px dashed black;
+    position: relative;
+}
+
+.empty {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+}
+
+.empty p {
+    font-size: 1.4rem;
+}
